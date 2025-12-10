@@ -105,7 +105,7 @@ void udpGame() {
     
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
-    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     server_addr.sin_port = htons(PORT);
     
     
@@ -156,7 +156,7 @@ printf("INFO: Starting TCP socket listener\n");
     // ok we set up server address
     struct sockaddr_in server, client_addr; //server_addr;
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = INADDR_ANY;
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
     server.sin_port = htons(PORT);
 
     //binding the socket

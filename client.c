@@ -14,7 +14,7 @@
 int breakpoint=0;
 
 void display() {
-    FILE *fptr=fopen("gameTable", "r");
+    FILE *fptr=fopen("gameTable2", "r");
     if (fptr==NULL) {
         return;
     }
@@ -48,7 +48,7 @@ void display() {
 void changeGameTables(int num, char *directions) {
     char buffer2[1];
 
-    FILE *file = fopen("gameTable", "a");
+    FILE *file = fopen("gameTable2", "a");
     if (file!=NULL && strcmp(directions, "incoming")==0) {
         fprintf(file, "%d\n", num);
         fclose(file);
@@ -98,7 +98,7 @@ void udpGame() {
     // Set up server address
     client_addr.sin_family = AF_INET;
     client_addr.sin_port = htons(PORT);
-    client_addr.sin_addr.s_addr = inet_addr("192.168.0.110"); // Change this to the server's IP if needed
+    client_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); // Change this to the server's IP if needed
 
     // Send message to server
     sendto(sock, message, strlen(message), 0, (struct sockaddr*)&client_addr, sizeof(client_addr));
@@ -133,7 +133,7 @@ void tcpGame() {
     char buffer[1024];
     ssize_t bytes_received;
 
-    char *serverip = "192.168.0.110";
+    char *serverip = "127.0.0.1";
     char message[1024];
 
     
@@ -233,7 +233,7 @@ void ask() {
 
 
 int main() {
-    system("rm -f gameTable"); // Remove gameTable before starting the game,
+    system("rm -f gameTable2"); // Remove gameTable before starting the game,
     // Ask wether start UDP or TCP
     printf("Gameboard goes accordingly\n\n_________\n|1, 2, 3|\n|4, 5, 6|\n|7, 8, 9|\n\n");
     ask();
